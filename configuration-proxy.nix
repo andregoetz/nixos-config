@@ -10,5 +10,5 @@
     ./modules/programs.nix
     ./modules/shell.nix
     ./modules/user.nix
-  ]
+  ];
 }
