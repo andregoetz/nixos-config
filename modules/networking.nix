@@ -20,7 +20,7 @@
     julius-server = {
       ips = [ "10.0.0.3/32" ];
       listenPort = 51820;
-      privateKeyFile = "/etc/nixos/files/julius-wg-priv-key";
+      privateKeyFile = "/home/andiru/.nixos-config/files/julius-wg-priv-key";
       peers = [
         {
           publicKey = "8n2woqq0aJR5tSk9/4irt3uaXWYQWrBVq9BCvVTCFTI=";
