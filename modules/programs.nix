@@ -11,6 +11,9 @@ in
     allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "vscode"
       "lunar-client-3.1.0"
+      "steam"
+      "steam-original"
+      "steam-run"
     ];
   };
 
@@ -38,6 +41,7 @@ in
     ripgrep-all
     sweet-nova
     just
+    nixpkgs-fmt
   ];
 
   # andiru packages
@@ -91,4 +95,11 @@ in
   # for like gnome stuff?
   programs.dconf.enable = true;
   services.gnome.gnome-keyring.enable = true;
+
+  # steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+  };
 }
