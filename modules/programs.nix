@@ -3,6 +3,7 @@
 let
   unstable = import (fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { config.allowUnfree = true; };
   electron-mail-fix = import (fetchTarball https://github.com/Princemachiavelli/nixpkgs/archive/master.tar.gz) { config.allowUnfree = true; };
+  tuta-fix = import (fetchTarball https://github.com/WolfangAukang/nixpkgs/archive/tutanota.tar.gz) { config.allowUnfree = true; };
   technic-launcher = pkgs.callPackage ../derivations/technic-launcher.nix { };
 in
 {
@@ -22,6 +23,7 @@ in
     (final: prev: {
       vscode = unstable.vscode.fhs;
       electron-mail = electron-mail-fix.electron-mail;
+      tutanota-desktop = tuta-fix.tutanota-desktop;
     })
   ];
 
@@ -66,8 +68,11 @@ in
     lunar-client
     copyq
     flameshot
-    technic-launcher # fixme: cannot start anything :(
+    jdk17
+    jdk21
+    maven
     electron-mail
+    tutanota-desktop
     ansible
     gimp
     pdfarranger
