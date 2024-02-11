@@ -1,12 +1,39 @@
-let
-  pkgs = import <nixpkgs> {};
-in
-{ lib ? pkgs.lib, stdenv ? pkgs.stdenv, fetchurl ? pkgs.fetchurl
-, makeWrapper ? pkgs.makeWrapper, copyDesktopItems ? pkgs.copyDesktopItems, makeDesktopItem ? pkgs.makeDesktopItem
-, libarchive ? pkgs.libarchive, icoutils ? pkgs.icoutils
-, jdk8 ? pkgs.jdk8
+{ lib, stdenv
+, fetchurl
+, libarchive
+, icoutils
+, nixosTests
+, copyDesktopItems
+, makeDesktopItem
+, makeWrapper
+, wrapGAppsHook
+, gobject-introspection
+, jre8
+, xorg
+, zlib
+, nss
+, nspr
+, fontconfig
+, pango
+, cairo
+, expat
+, alsa-lib
+, cups
+, dbus
+, atk
+, gtk3-x11
+, gtk2-x11
+, gdk-pixbuf
+, glib
+, curl
+, freetype
+, libpulseaudio
+, libuuid
+, systemd
+, libXxf86vm
+, mesa
+, flite ? null
 }:
-
 let
   major-version = "4";
   sub-version = "822";
@@ -19,6 +46,52 @@ let
     desktopName = "Technic Launcher";
     categories = [ "Game" ];
   };
+
+  envLibPath = lib.makeLibraryPath [
+    curl
+    libpulseaudio
+    systemd
+    jre8
+    mesa
+    libXxf86vm # needed for versions <1.13
+    alsa-lib # needed for narrator
+    flite # needed for narrator
+  ];
+
+  libPath = lib.makeLibraryPath ([
+    alsa-lib
+    atk
+    cairo
+    cups
+    dbus
+    expat
+    fontconfig
+    freetype
+    gdk-pixbuf
+    glib
+    pango
+    gtk3-x11
+    gtk2-x11
+    nspr
+    nss
+    stdenv.cc.cc
+    zlib
+    libuuid
+  ] ++
+  (with xorg; [
+    libX11
+    libxcb
+    libXcomposite
+    libXcursor
+    libXdamage
+    libXext
+    libXfixes
+    libXi
+    libXrandr
+    libXrender
+    libXtst
+    libXScrnSaver
+  ]));
 in
 stdenv.mkDerivation rec {
   pname = "technic-launcher";
@@ -57,10 +130,15 @@ stdenv.mkDerivation rec {
   '';
 
   postInstall = ''
-    makeWrapper ${jdk8}/bin/java $out/bin/technic-launcher \
+    makeWrapper ${jre8}/bin/java $out/bin/technic-launcher \
       --add-flags "-jar $out/share/java/${pname}/technic-launcher.jar" \
-      --prefix PATH : ${lib.makeBinPath [ jdk8 ]} \
-      --set JAVA_HOME ${lib.getBin jdk8}
+      --prefix LD_LIBRARY_PATH : ${envLibPath} \
+      --prefix PATH : ${lib.makeBinPath [ jre8 ]} \
+      --set JAVA_HOME ${lib.getBin jre8}
+    patchelf \
+      --set-interpreter ${stdenv.cc.bintools.dynamicLinker} \
+      --set-rpath '$ORIGIN/'":${libPath}" \
+      $out/bin/technic-launcher
   '';
 
   desktopItems = [ desktopItem ];

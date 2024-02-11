@@ -44,6 +44,7 @@ in
     sweet-nova
     just
     nixpkgs-fmt
+    clinfo
   ];
 
   # andiru packages
@@ -56,6 +57,7 @@ in
     webcord
     element-desktop
     vlc
+    mpv
     ffmpeg
     gnome.gnome-disk-utility
     gnome.gnome-calculator
@@ -68,7 +70,8 @@ in
     lunar-client
     copyq
     flameshot
-    jdk17
+    technic-launcher
+    # jdk17
     jdk21
     maven
     electron-mail
