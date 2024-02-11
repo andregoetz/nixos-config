@@ -4,13 +4,13 @@
     enable = true;
     config = {
       push = {
-	autoSetupRemote = true;
+        autoSetupRemote = true;
       };
       init = {
-	defaultBranch = "main";
+        defaultBranch = "main";
       };
       commit = {
-	gpgsign = true;
+        gpgsign = true;
       };
     };
   };

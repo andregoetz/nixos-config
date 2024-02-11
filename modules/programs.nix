@@ -27,8 +27,7 @@ in
     })
   ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # packages installed in system profile
   environment.systemPackages = with pkgs; [
     xclip
     zoxide
@@ -44,7 +43,6 @@ in
     sweet-nova
     just
     nixpkgs-fmt
-    clinfo
   ];
 
   # andiru packages
@@ -71,7 +69,6 @@ in
     copyq
     flameshot
     technic-launcher
-    # jdk17
     jdk21
     maven
     electron-mail
@@ -101,6 +98,7 @@ in
   };
 
   # for like gnome stuff?
+  # fixme: needed?
   programs.dconf.enable = true;
   services.gnome.gnome-keyring.enable = true;
 

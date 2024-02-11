@@ -1,7 +1,4 @@
-let
-  pkgs = import <nixpkgs> {};
-in
-{ stdenv ? pkgs.stdenv, fetchzip ? pkgs.fetchzip }:
+{ stdenv, fetchzip }:
 
 stdenv.mkDerivation rec {
   pname = "andiru-zsh-theme";

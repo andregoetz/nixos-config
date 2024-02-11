@@ -1,10 +1,19 @@
-let
-  pkgs = import <nixpkgs> {};
-in
-{ lib ? pkgs.lib, stdenv ? pkgs.stdenv, fetchurl ? pkgs.fetchurl
-, makeWrapper ? pkgs.makeWrapper, copyDesktopItems ? pkgs.copyDesktopItems, makeDesktopItem ? pkgs.makeDesktopItem
-, libarchive ? pkgs.libarchive, icoutils ? pkgs.icoutils
-, jdk8 ? pkgs.jdk8
+{ lib
+, stdenv
+, fetchurl
+, makeWrapper
+, copyDesktopItems
+, makeDesktopItem
+, libarchive
+, icoutils
+, jre8 # newer version might be needed for newer modpacks
+, curl
+, libpulseaudio
+, systemd
+, alsa-lib
+, flite ? null
+, libXxf86vm ? null
+, libGL ? null
 }:
 
 let
@@ -19,6 +28,17 @@ let
     desktopName = "Technic Launcher";
     categories = [ "Game" ];
   };
+
+  # from minecraft package
+  envLibPath = lib.makeLibraryPath [
+    curl
+    libpulseaudio
+    systemd
+    alsa-lib # needed for narrator
+    flite # needed for narrator
+    libXxf86vm # needed only for versions <1.13
+    libGL # needed only when mojang java runtime doesn't work
+  ];
 in
 stdenv.mkDerivation rec {
   pname = "technic-launcher";
@@ -50,17 +70,19 @@ stdenv.mkDerivation rec {
 
     for size in 16 32 48 64; do
       install -D -m644 "icon_"?"_"$size"x"$size"x32.png" \
-	"$out/share/icons/hicolor/"$size"x"$size"/apps/technic-launcher.png"
+      "$out/share/icons/hicolor/"$size"x"$size"/apps/technic-launcher.png"
     done
 
     runHook postInstall
   '';
 
   postInstall = ''
-    makeWrapper ${jdk8}/bin/java $out/bin/technic-launcher \
+    makeWrapper ${jre8}/bin/java $out/bin/technic-launcher \
       --add-flags "-jar $out/share/java/${pname}/technic-launcher.jar" \
-      --prefix PATH : ${lib.makeBinPath [ jdk8 ]} \
-      --set JAVA_HOME ${lib.getBin jdk8}
+      --prefix LD_LIBRARY_PATH : ${envLibPath} \
+      --prefix PATH : ${lib.makeBinPath [ jre8 ]} \
+      --set JAVA_HOME ${lib.getBin jre8} \
+      --chdir /tmp
   '';
 
   desktopItems = [ desktopItem ];

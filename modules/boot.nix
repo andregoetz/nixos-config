@@ -15,48 +15,48 @@
   boot.initrd.luks.devices."backups".device = "/dev/disk/by-uuid/dd35122a-7071-4748-aebd-bbc293d22267";
 
   # mount drives
-  fileSystems = { 
+  fileSystems = {
     "/home/andiru/data" = lib.mkForce {
       device = "/dev/mapper/data";
       fsType = "auto";
       options = [
-	"nosuid"
-	"nodev"
-	"x-gvfs-show"
-	"noatime"
+        "nosuid"
+        "nodev"
+        "x-gvfs-show"
+        "noatime"
       ];
     };
     "/run/media/andiru/backups" = {
       device = "/dev/mapper/backups";
       fsType = "auto";
       options = [
-	"nosuid"
-	"nodev"
-	"nofail"
-	"x-gvfs-show"
-	"noatime"
+        "nosuid"
+        "nodev"
+        "nofail"
+        "x-gvfs-show"
+        "noatime"
       ];
     };
     "/run/media/andiru/steam-games" = {
       device = "/dev/disk/by-uuid/e76dcc56-1f09-42e1-bf87-76008d7066ab";
       fsType = "auto";
       options = [
-	"nosuid"
-	"nodev"
-	"nofail"
-	"x-gvfs-show"
-	"noatime"
+        "nosuid"
+        "nodev"
+        "nofail"
+        "x-gvfs-show"
+        "noatime"
       ];
     };
     "/run/media/andiru/non-steam-games" = {
       device = "/dev/disk/by-uuid/615db617-10f8-4da3-9ed4-74fc81a3c59c";
       fsType = "auto";
       options = [
-	"nosuid"
-	"nodev"
-	"nofail"
-	"x-gvfs-show"
-	"noatime"
+        "nosuid"
+        "nodev"
+        "nofail"
+        "x-gvfs-show"
+        "noatime"
       ];
     };
   };

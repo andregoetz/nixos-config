@@ -12,13 +12,13 @@
     greeters.gtk = {
       enable = true;
       theme = {
-	name = "Breeze Dark";
-	package = pkgs.libsForQt5.breeze-gtk;
+        name = "Breeze Dark";
+        package = pkgs.libsForQt5.breeze-gtk;
       };
       cursorTheme = {
-	name = "Sweet-cursors";
-	size = 16;
-	package = pkgs.sweet-nova;
+        name = "Sweet-cursors";
+        size = 16;
+        package = pkgs.sweet-nova;
       };
       clock-format = "%T";
     };
