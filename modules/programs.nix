@@ -43,6 +43,7 @@ in
     sweet-nova
     just
     nixpkgs-fmt
+    accountsservice
   ];
 
   # andiru packages

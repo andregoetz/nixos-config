@@ -9,6 +9,7 @@
   services.xserver.displayManager.defaultSession = "plasma";
   services.xserver.displayManager.lightdm = {
     enable = true;
+    background = "/var/lib/AccountsService/icons/andiru-background.png";
     greeters.gtk = {
       enable = true;
       theme = {
