@@ -99,10 +99,13 @@ in
     ];
   };
 
-  # for like gnome stuff?
-  # fixme: needed?
+  # gnome stuff/needed for vscode?
   programs.dconf.enable = true;
-  services.gnome.gnome-keyring.enable = true;
+
+  # keyring/kwallet
+  environment.sessionVariables = {
+    SSH_ASKPASS_REQUIRE = "prefer";
+  };
 
   # steam
   programs.steam = {
