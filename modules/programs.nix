@@ -46,40 +46,44 @@ in
   ];
 
   # andiru packages
-  users.users.andiru.packages = with pkgs; [
+  users.users.andiru.packages = with pkgs; ([ # system
+    vlc
+    mpv
+    ffmpeg
+    neofetch
+    yt-dlp
+    gnome.gnome-disk-utility
+    gnome.gnome-calculator
+    gnome.simple-scan
+    rofi
+    gh
+    copyq
+    libsForQt5.kdeconnect-kde
+  ] ++ [ # browsers/mail
     firefox
     librewolf
     tor-browser
     thunderbird
-    vscode
-    webcord
-    element-desktop
-    vlc
-    mpv
-    ffmpeg
-    gnome.gnome-disk-utility
-    gnome.gnome-calculator
-    gnome.simple-scan
-    libreoffice
-    rofi
-    neofetch
-    yt-dlp
-    gh
-    lunar-client
-    copyq
-    flameshot
-    technic-launcher
-    jdk21
-    maven
     electron-mail
     tutanota-desktop
-    ansible
-    gimp
+  ] ++ [ # office
+    libreoffice
     pdfarranger
     xournalpp
+    gimp
+  ] ++ [ # chat/social
+    webcord
+    element-desktop
+  ] ++ [ # developing
+    vscode
+    jdk21
+    maven
+    ansible
+  ] ++ [ # games
+    lunar-client
+    technic-launcher
     superTuxKart
-    libsForQt5.kdeconnect-kde
-  ];
+  ]);
 
   # gnupg
   programs.gnupg.agent = {
