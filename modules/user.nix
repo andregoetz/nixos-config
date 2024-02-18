@@ -9,6 +9,7 @@
       "wheel"
       "scanner"
       "lp"
+      "docker"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM6g/r3jUO1Iot99durBRahQiZZjAqpYNpI8A0xjhk5t andiru"

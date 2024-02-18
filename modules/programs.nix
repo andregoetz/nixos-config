@@ -76,6 +76,8 @@ in
     ansible
     gimp
     pdfarranger
+    xournalpp
+    superTuxKart
   ];
 
   # gnupg
