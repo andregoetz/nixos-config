@@ -78,6 +78,7 @@ in
     pdfarranger
     xournalpp
     superTuxKart
+    libsForQt5.kdeconnect-kde
   ];
 
   # gnupg
