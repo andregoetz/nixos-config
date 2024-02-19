@@ -22,6 +22,7 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       vscode = unstable.vscode.fhs;
+      rnote = unstable.rnote;
       electron-mail = electron-mail-fix.electron-mail;
       tutanota-desktop = tuta-fix.tutanota-desktop;
     })
@@ -74,6 +75,7 @@ in
     libreoffice
     pdfarranger
     xournalpp
+    rnote
     gimp
   ] ++ [
     # chat/social
@@ -138,10 +140,15 @@ in
       devices = {
         "raspberry" = { id = "EZGDIDX-TR7CT44-6OAIXE7-UAOBYVM-Z6RV635-WS7ABKS-NVSFKJG-EPGMCQH"; };
         "lenovo" = { id = "GXH5HAY-VIPVFA2-EMVHC2M-H55OSJ4-BIRSPGI-RIIKOOH-WKBBDQT-2ETLGQV"; };
+        "pixel" = { id = "PYTMHAC-ZFGCLBP-GTBID7G-5V5XXL6-S6OEISW-IOFN5BH-3NMSSQ3-PTW22QP"; };
       };
       folders = {
         "default" = {
           path = "/home/andiru/Sync";
+          devices = [ "raspberry" "lenovo" "pixel" ];
+        };
+        "master" = {
+          path = "/home/andiru/master";
           devices = [ "raspberry" "lenovo" ];
         };
       };
