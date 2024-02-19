@@ -47,7 +47,8 @@ in
   ];
 
   # andiru packages
-  users.users.andiru.packages = with pkgs; ([ # system
+  users.users.andiru.packages = with pkgs; ([
+    # system
     vlc
     mpv
     ffmpeg
@@ -60,27 +61,32 @@ in
     gh
     copyq
     libsForQt5.kdeconnect-kde
-  ] ++ [ # browsers/mail
+  ] ++ [
+    # browsers/mail
     firefox
     librewolf
     tor-browser
     thunderbird
     electron-mail
     tutanota-desktop
-  ] ++ [ # office
+  ] ++ [
+    # office
     libreoffice
     pdfarranger
     xournalpp
     gimp
-  ] ++ [ # chat/social
+  ] ++ [
+    # chat/social
     webcord
     element-desktop
-  ] ++ [ # developing
+  ] ++ [
+    # developing
     vscode
     jdk21
     maven
     ansible
-  ] ++ [ # games
+  ] ++ [
+    # games
     lunar-client
     technic-launcher
     superTuxKart
@@ -118,5 +124,27 @@ in
     enable = true;
     remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+  };
+
+  # syncthing
+  services.syncthing = {
+    enable = true;
+    user = "andiru";
+    dataDir = "/home/andiru/Sync";
+    configDir = "/home/andiru/.config/syncthing";
+    overrideDevices = true; # overrides any devices added or deleted through the WebUI
+    overrideFolders = true; # overrides any folders added or deleted through the WebUI
+    settings = {
+      devices = {
+        "raspberry" = { id = "EZGDIDX-TR7CT44-6OAIXE7-UAOBYVM-Z6RV635-WS7ABKS-NVSFKJG-EPGMCQH"; };
+        "lenovo" = { id = "GXH5HAY-VIPVFA2-EMVHC2M-H55OSJ4-BIRSPGI-RIIKOOH-WKBBDQT-2ETLGQV"; };
+      };
+      folders = {
+        "default" = {
+          path = "/home/andiru/Sync";
+          devices = [ "raspberry" "lenovo" ];
+        };
+      };
+    };
   };
 }

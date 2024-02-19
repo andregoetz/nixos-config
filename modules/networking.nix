@@ -12,20 +12,30 @@
     settings.KbdInteractiveAuthentication = false;
   };
 
-  # kde connect
+  # firewall
   networking.firewall = {
+    # kde connect
     allowedTCPPortRanges = [
       { from = 1714; to = 1764; }
     ];
     allowedUDPPortRanges = [
       { from = 1714; to = 1764; }
     ];
+    allowedTCPPorts = [
+      # syncthing
+      8384
+      22000
+    ];
+    allowedUDPPorts = [
+      # wireguard
+      51820
+      # syncthing
+      22000
+      21027
+    ];
   };
 
   # julius server wireguard
-  networking.firewall = {
-    allowedUDPPorts = [ 51820 ];
-  };
   networking.wireguard.interfaces = {
     julius-server = {
       ips = [ "10.0.0.3/32" ];

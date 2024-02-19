@@ -18,9 +18,10 @@
   # docker
   virtualisation.docker = {
     enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    # doesnt work for plantuml so not using (at least till exam)
+    # rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
   };
 }
