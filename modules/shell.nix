@@ -15,6 +15,9 @@ in
     reencrypt = "encrypt";
     ghrvw = "gh repo view --web";
   };
+  environment.sessionVariables = rec {
+    NIX_BUILD_SHELL = "zsh";
+  };
   environment.interactiveShellInit = ''
     duration() {
       for i in $*; do
@@ -72,6 +75,7 @@ in
     enable = true;
     syntaxHighlighting.enable = true;
     autosuggestions.enable = true;
+    interactiveShellInit = "source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh";
     ohMyZsh = {
       enable = true;
       theme = "andiru";

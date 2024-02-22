@@ -23,6 +23,7 @@ in
     (final: prev: {
       vscode = unstable.vscode.fhs;
       rnote = unstable.rnote;
+      lunar-client = unstable.lunar-client;
       electron-mail = electron-mail-fix.electron-mail;
       tutanota-desktop = tuta-fix.tutanota-desktop;
     })
@@ -84,8 +85,6 @@ in
   ] ++ [
     # developing
     vscode
-    jdk21
-    maven
     ansible
   ] ++ [
     # games
