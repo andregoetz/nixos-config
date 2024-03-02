@@ -3,30 +3,31 @@
 let
   unstable = import (fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { config.allowUnfree = true; };
   electron-mail-fix = import (fetchTarball https://github.com/Princemachiavelli/nixpkgs/archive/master.tar.gz) { config.allowUnfree = true; };
-  tuta-fix = import (fetchTarball https://github.com/WolfangAukang/nixpkgs/archive/tutanota.tar.gz) { config.allowUnfree = true; };
   technic-launcher = pkgs.callPackage ../derivations/technic-launcher.nix { };
-in
-{
-  # unfree predicate
-  nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "vscode"
+
+  vscode-settings = import ./vscode.nix { unstable = unstable; };
+  unfree-predicate = [
       "lunar-client-3.1.0"
       "steam"
       "steam-original"
       "steam-run"
-    ];
+  ] ++ vscode-settings.unfree-predicate;
+in
+{
+  # unfree predicate
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfree-predicate;
   };
 
   # overlays
   nixpkgs.overlays = [
     (final: prev: {
-      vscode = unstable.vscode.fhs;
       rnote = unstable.rnote;
       lunar-client = unstable.lunar-client;
+      tutanota-desktop = unstable.tutanota-desktop;
       electron-mail = electron-mail-fix.electron-mail;
-      tutanota-desktop = tuta-fix.tutanota-desktop;
     })
+    vscode-settings.overlay
   ];
 
   # packages installed in system profile
@@ -46,6 +47,7 @@ in
     just
     nixpkgs-fmt
     accountsservice
+    gnome.seahorse
   ];
 
   # andiru packages
@@ -84,8 +86,8 @@ in
     element-desktop
   ] ++ [
     # developing
-    vscode
     ansible
+    vscode-with-extensions
   ] ++ [
     # games
     lunar-client
