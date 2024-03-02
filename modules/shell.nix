@@ -10,6 +10,7 @@ in
     disex = "disown & exit";
     dur = "duration";
     nrbs = "sudo nixos-rebuild switch";
+    nrbsu = "sudo nixos-rebuild switch --upgrade";
     nrbt = "sudo nixos-rebuild test";
     init_encrypt = "decrypt";
     reencrypt = "encrypt";
