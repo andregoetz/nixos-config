@@ -93,6 +93,8 @@ in
     lunar-client
     technic-launcher
     superTuxKart
+    cemu
+    heroic
   ]);
 
   # gnupg
