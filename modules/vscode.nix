@@ -14,6 +14,8 @@ let
     dhruv.maven-dependency-explorer
     donjayamanne.python-environment-manager
     ecmel.vscode-html-css
+    github.copilot
+    github.copilot-chat
     github.remotehub
     hbenl.vscode-test-explorer
     janisdd.vscode-edit-csv
@@ -61,8 +63,6 @@ let
     eamodio.gitlens
     formulahendry.auto-rename-tag
     github.codespaces
-    github.copilot
-    github.copilot-chat
     github.vscode-pull-request-github
     golang.go
     grapecity.gc-excelviewer
