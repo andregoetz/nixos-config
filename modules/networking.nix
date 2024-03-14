@@ -25,6 +25,8 @@
       # syncthing
       8384
       22000
+      # mc
+      25565
     ];
     allowedUDPPorts = [
       # wireguard
@@ -32,6 +34,8 @@
       # syncthing
       22000
       21027
+      # mc
+      25565
     ];
   };
 
