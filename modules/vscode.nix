@@ -14,8 +14,6 @@ let
     dhruv.maven-dependency-explorer
     donjayamanne.python-environment-manager
     ecmel.vscode-html-css
-    github.copilot
-    github.copilot-chat
     github.remotehub
     hbenl.vscode-test-explorer
     janisdd.vscode-edit-csv
@@ -61,14 +59,17 @@ let
     codezombiech.gitignore
     dbaeumer.vscode-eslint
     eamodio.gitlens
+    esbenp.prettier-vscode
     formulahendry.auto-rename-tag
     github.codespaces
+    github.copilot
+    github.copilot-chat
     github.vscode-pull-request-github
     golang.go
     grapecity.gc-excelviewer
     gruntfuggly.todo-tree
+    james-yu.latex-workshop
     jnoortheen.nix-ide
-    johnpapa.vscode-peacock
     mads-hartmann.bash-ide-vscode
     mechatroner.rainbow-csv
     mhutchie.git-graph
@@ -89,12 +90,12 @@ let
     redhat.java
     redhat.vscode-xml
     redhat.vscode-yaml
-    shardulm94.trailing-spaces
     skellock.just
     sonarsource.sonarlint-vscode
     streetsidesoftware.code-spell-checker
     tamasfe.even-better-toml
     usernamehw.errorlens
+    valentjn.vscode-ltex
     vscjava.vscode-java-debug
     vscjava.vscode-java-dependency
     vscjava.vscode-java-test

@@ -11,6 +11,7 @@ let
       "steam"
       "steam-original"
       "steam-run"
+      "android-studio-stable"
   ] ++ vscode-settings.unfree-predicate;
 in
 {
@@ -32,6 +33,7 @@ in
 
   # packages installed in system profile
   environment.systemPackages = with pkgs; [
+    dig
     xclip
     zoxide
     encfs
@@ -73,6 +75,7 @@ in
     thunderbird
     electron-mail
     tutanota-desktop
+    ausweisapp
   ] ++ [
     # office
     libreoffice
@@ -80,6 +83,7 @@ in
     xournalpp
     rnote
     gimp
+    texlive.combined.scheme-full
   ] ++ [
     # chat/social
     webcord
@@ -87,6 +91,7 @@ in
   ] ++ [
     # developing
     ansible
+    android-studio
     vscode-with-extensions
   ] ++ [
     # games
@@ -95,6 +100,9 @@ in
     superTuxKart
     cemu
     heroic
+  ] ++ [
+    # other
+    nextcloud-client
   ]);
 
   # gnupg
@@ -141,8 +149,8 @@ in
     overrideFolders = true; # overrides any folders added or deleted through the WebUI
     settings = {
       devices = {
-        "raspberry" = { id = "EZGDIDX-TR7CT44-6OAIXE7-UAOBYVM-Z6RV635-WS7ABKS-NVSFKJG-EPGMCQH"; };
-        "lenovo" = { id = "GXH5HAY-VIPVFA2-EMVHC2M-H55OSJ4-BIRSPGI-RIIKOOH-WKBBDQT-2ETLGQV"; };
+        "raspberry" = { id = "PKIKUWV-KCXCSC5-2RQ4KWO-Y3WLD7M-I2UPZUO-VQSEPVK-CAL3THC-5CGWXAL"; };
+        "lenovo" = { id = "A4VUUAM-QZTXB5S-2YI2MWJ-IT7Y5E5-4QAPJUD-BSKLZ6M-6DCO4KY-4SOAYA6"; };
         "pixel" = { id = "PYTMHAC-ZFGCLBP-GTBID7G-5V5XXL6-S6OEISW-IOFN5BH-3NMSSQ3-PTW22QP"; };
       };
       folders = {
