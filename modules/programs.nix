@@ -58,7 +58,7 @@ in
     vlc
     mpv
     ffmpeg
-    neofetch
+    fastfetch
     yt-dlp
     gnome.gnome-disk-utility
     gnome.gnome-calculator
